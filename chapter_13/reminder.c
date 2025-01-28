@@ -1,3 +1,4 @@
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -56,7 +57,7 @@ int query_user(char reminders[][REMINDER_SIZE], int n)
 
 int read_string(char reminder[], int n)
 {
-  int in, i = 0;
+  int in, i = 0, day;
   while((in = getchar()) != '\n'){
     if (i < n) {
       reminder[i++] = in;
