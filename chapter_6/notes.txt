@@ -1,0 +1,16 @@
+*****LOOPS*****
+
+while - controlling expression tested before loop body is executed
+do - controlling expresssion tested after loop body is executed
+for - loops that have a known number of iterations and decrement/increment a variable
+
+break - jumps out of a loop and transfers control to the next statement
+continue - skips the rest of the loop iteration
+goto - jumps to any statement within a function
+NULL - loops with empty bodies
+
+controlling expression - the expression that is evaluated at some time during the loop. 
+  0 (stop) or nonzero (continue).
+loop body - the expression(s) to be executed should the controlling expression evaluate to nonzero
+
+
