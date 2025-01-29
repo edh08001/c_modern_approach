@@ -1,27 +1,19 @@
 /* This program takes a First Last name and outputs Last, First Initial */
 
 #include <stdio.h>
+#define N 20
 
 int main(int argc, char *argv[])
 {
   char in, first_initial, last_initial;
+  char first[N+1], last[N+1], full[N*2 + 1];
 
   printf("Enter a name: ");
-  scanf(" %c", &first_initial);
-  
-  while(getchar() != ' ')
-    ; /* Skip to end of first name */ 
+  scanf("%s", first);
+  scanf("%s", last);
 
-  scanf(" %c", &last_initial);
-
-  printf("%c", last_initial);
-
-  while((in = getchar()) != '\n'){
-    if(in == ' ') break;
-    printf("%c", in);
-  }
-
-  printf(", %c.\n", first_initial);
+  printf("%s, %c.\n", last, first[0]);  
 
   return 0;
 }
+
