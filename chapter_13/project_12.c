@@ -2,44 +2,51 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define SENTENCE_SIZE 100
+#define WORD_LEN 15
+#define WORD_COUNT 20
+
+/********************************************************
+ * Gathers user input and stores each word in an array. *
+ * Each word will be nul terminated to be treated as a  *
+ * string.                                              *
+ ********************************************************/
+int parse_words(char words[][WORD_LEN + 1], char *p, int num_words, int word_size);
 
 int main(int argc, char *argv[])
 {
-  char sentence[SENTENCE_SIZE];
-  char in, punctuation;
-  int index = 0;
+  char p = '.', words[WORD_COUNT][WORD_LEN + 1];
+  int wc;
 
-  for(int i = 0; i < SENTENCE_SIZE; i++)
-    sentence[i] = ' ';
+  wc = parse_words(words, &p, WORD_COUNT, WORD_LEN);
 
-  printf("Enter a sentence: ");
-  while((in = getchar()) != '\n'){
-    
-    if(in == '.' || in == '!' || in == '?'){
-      punctuation = in;
-      break;
-    }
-    sentence[index] = in;
-    index++;
+  for ( ; wc > 0; wc--){
+    printf("%s ", &words[wc][0]);
   }
-  
-  for(int i = index - 1; i >= 0; i--){
-    if(sentence[i] == ' ' || i == 0){
-      for(int j = (i == 0 ? i : i + 1); j < index; j++){
-        printf("%c", sentence[j]);
-      }
-
-      if (i != 0)
-        printf(" ");
-      else
-        printf("%c", punctuation);
-
-      index = i;
-    }
-  }
-  printf("\n");
+  printf("%s%c\n", &words[0][0], p);
 
   return EXIT_SUCCESS;
 }
 
+int parse_words(char words[][WORD_LEN + 1], char *p, int num_words, int word_size)
+{
+  char in;
+  int i, j;
+  i = j = 0;
+
+  printf("Enter a sentence: ");
+  while (i < num_words){
+    in = getchar();
+    if (in == ' ' || in == '\t') {
+      words[i++][j] = '\0';
+      j = 0;
+    } else if (in == '.' || in == '?' || in == '!' || in == '\n'){
+        words[i][j] = '\0';
+        (in == '\n') ? (*p = '.') : (*p = in);
+        break;
+    } else {
+      if (j < word_size)
+        words[i][j++] = in;
+    }
+  }
+  return i;
+}
