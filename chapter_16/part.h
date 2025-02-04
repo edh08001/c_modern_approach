@@ -3,8 +3,6 @@
 
 #define NAME_LENGTH 25
 
-extern int num_parts;
-
 typedef struct {
   int part_number;
   char part_name[NAME_LENGTH+1];

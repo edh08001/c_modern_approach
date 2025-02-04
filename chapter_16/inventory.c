@@ -13,6 +13,8 @@ int main(void)
 
 
   for (;;){
+    while ((ch = getchar()) != '\n')
+      ;
     printf("Enter Menu Option (i,s,u,p,q): ");
     ch = getchar();
     switch(ch){

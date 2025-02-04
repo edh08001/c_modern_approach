@@ -1,14 +1,9 @@
 #include "part.h"
+#include "readline.h"
 #include <stdio.h>
 #include <stdbool.h>
 
-
-void clear_buffer(void)
-{
-  char ch;
-  while ((ch = getchar()) != EOF && ch != '\n')
-    ;
-}
+extern int num_parts;
 
 void add_part(part *parts, int n)
 {
@@ -18,9 +13,8 @@ void add_part(part *parts, int n)
     unsigned long size;
     printf("Enter Part Number: ");
     scanf("%d", &part.part_number);
-    clear_buffer();
     printf("Enter Part Name: ");
-    fgets(part.part_name, NAME_LENGTH, stdin);
+    read_line(part.part_name, NAME_LENGTH);
     printf("Enter Part Quantity: ");
     scanf("%d", &part.on_hand);
     parts[num_parts++] = part;
@@ -68,7 +62,7 @@ void display_all_parts(part *parts)
 {
   printf("Part Number  |  Part Name                    |  Part Qty\n");
   for (int i = 0; i < num_parts; i++){
-    printf("%d               %s%23d\n", parts[i].part_number, parts[i].part_name, parts[i].on_hand);
+    printf("%-16d%-32s%d\n", parts[i].part_number, parts[i].part_name, parts[i].on_hand);
   }
 }
 
