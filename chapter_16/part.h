@@ -3,6 +3,8 @@
 
 #define NAME_LENGTH 25
 
+extern int num_parts;
+
 typedef struct {
   int part_number;
   char part_name[NAME_LENGTH+1];
@@ -19,10 +21,10 @@ typedef struct {
 void add_part(part *parts, int n);
 
 /******************************************************************
- * print_part: Takes a part by number and lists the name as well  *
+ * search_part: Takes a part by number and lists the name as well *
  *             as the quantity currently available.               *
  ******************************************************************/
-void print_part(int part);
+void search_part(part *parts);
 
 /******************************************************************
  * update_quantity: When given a part and a quantity, this will   *
@@ -30,7 +32,7 @@ void print_part(int part);
  *                  This function takes both positive and         *
  *                  negative values to increment or decrement     *
  ******************************************************************/
-void update_part_quantity(part *p, int quantity);
+void update_part_quantity(part *parts);
 
 /******************************************************************
  * display_all: Takes a parts array and prints the item name, the *
