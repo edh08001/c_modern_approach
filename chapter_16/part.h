@@ -40,4 +40,11 @@ void update_part_quantity(part *parts);
  ******************************************************************/
 void display_all_parts(part *parts);
 
+/******************************************************************
+ * find_part: Searches a part array and returns the array index   *
+ *            that the part occupies, or -1 if the part does not  *
+ *            exist.                                              *
+ ******************************************************************/
+int find_part(part *parts, int part_num);
+
 #endif

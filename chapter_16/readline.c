@@ -12,9 +12,8 @@ void read_line(char *buf, int n)
   buf[i++] = ch; 
   while ((ch = getchar()) != EOF && ch != '\n')
   {
-    buf[i++] = ch;
-    if (i == n) break;
+    if (i < n)
+      buf[i++] = ch;
   }
-
   buf[i] = '\0';
 }

@@ -15,7 +15,7 @@ int main(void)
 
   for (;;){
     printf("Enter Menu Option (i,s,u,p,q): ");
-    read_line(ch, 2);
+    read_line(ch, 1);
     switch(ch[0]){
       case 'i': add_part(parts, MAX_PARTS); 
       break;
