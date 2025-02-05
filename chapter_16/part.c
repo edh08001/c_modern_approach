@@ -18,6 +18,7 @@ void add_part(part *parts, int n)
     printf("Enter Part Quantity: ");
     scanf("%d", &part.on_hand);
     parts[num_parts++] = part;
+    printf("\n");
   } else {
     printf("Error: unique part count reached, part not added.\n");
   }
@@ -31,7 +32,7 @@ void search_part(part *parts)
   scanf("%d", &part_num);
   for (i = 0; i < num_parts; i++){
     if (parts[i].part_number == part_num){
-      printf("Part Name: %s", parts[i].part_name);
+      printf("Part Name: %s\n", parts[i].part_name);
       printf("Part Quantity: %d\n\n", parts[i].on_hand);
       found = true;
     }
@@ -47,15 +48,16 @@ void update_part_quantity(part *parts)
   scanf("%d", &part_num);
   for (i = 0; i < num_parts; i++){
     if (parts[i].part_number == part_num){
-      printf("Enter Part Quantity: ");
+      printf("Enter Part Quantity Adjustment: ");
       scanf("%d", &qty);
-      parts[i].on_hand = qty;
+      parts[i].on_hand += qty;
       found = true;
     }
   }
   if (!found){
     printf("No part with that id exists.\n");
   }
+  printf("\n");
 }
 
 void display_all_parts(part *parts) 
@@ -64,6 +66,7 @@ void display_all_parts(part *parts)
   for (int i = 0; i < num_parts; i++){
     printf("%-16d%-32s%d\n", parts[i].part_number, parts[i].part_name, parts[i].on_hand);
   }
+  printf("\n");
 }
 
 
