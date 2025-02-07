@@ -33,13 +33,16 @@ void add_part(part *parts, int n)
 void insert_part(part *parts, part p)
 {
   int i, j;
-  part temp; 
+  part t1, t2; 
   bool inserted = false;
 
   for (i = 0; i < num_parts; i++){
     if (p.part_number < parts[i].part_number){
-      for (j = ++i; j < num_parts; j++){
-        parts[j+1] = parts[j]; 
+      t2 = parts[i];
+      for (j = i; j < num_parts; j++){
+        t1 = parts[j+1];
+        parts[j+1] = t2; 
+        t2 = t1;
       }
       parts[i] = p;
       inserted = true;
