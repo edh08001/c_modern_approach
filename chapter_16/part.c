@@ -22,12 +22,34 @@ void add_part(part *parts, int n)
       read_line(part.part_name, NAME_LENGTH);
       printf("Enter Part Quantity: ");
       scanf("%d", &part.on_hand);
-      parts[num_parts++] = part;
+      insert_part(parts, part);
       printf("\n");
     }
   } else {
     printf("Error: unique part count reached, part not added.\n");
   }
+}
+
+void insert_part(part *parts, part p)
+{
+  int i, j;
+  part temp; 
+  bool inserted = false;
+
+  for (i = 0; i < num_parts; i++){
+    if (p.part_number < parts[i].part_number){
+      for (j = ++i; j < num_parts; j++){
+        parts[j+1] = parts[j]; 
+      }
+      parts[i] = p;
+      inserted = true;
+      break;
+    }
+  }
+
+  if (!inserted) parts[i] = p;
+
+  num_parts++;
 }
 
 void search_part(part *parts)

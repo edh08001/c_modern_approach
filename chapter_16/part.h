@@ -19,6 +19,15 @@ typedef struct {
 void add_part(part *parts, int n);
 
 /******************************************************************
+ * insert_part: Takes a part array and a part, and inserts the    *
+ *              part at the correct position in the array. It does*
+ *              this by scanning until it finds the correct pos,  *
+ *              moving the remaining parts down one each, and then*
+ *              inserting the new part into the correct spot      *
+ ******************************************************************/
+void insert_part(part *parts, part part);
+
+/******************************************************************
  * search_part: Takes a part by number and lists the name as well *
  *             as the quantity currently available.               *
  ******************************************************************/
