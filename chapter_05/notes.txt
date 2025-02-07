@@ -1,0 +1,51 @@
+******STATEMENTS******
+
+Three types of statements:
+  Selection (If, Switch)
+  Iteration (While, Do, For)
+  Jump (Break, Continue, Goto, Return)
+  Compound (Join multiple statements into one)
+  NULL (No Action)
+
+Precedence of relational operators is lower than arithmaetic
+  i + j < k - 1 means (i + j) < (k - 1)
+
+Relational works left to right, so
+  i < j < k means (i < j) < k
+
+! is considered a unary operator, while && and || are considered binary
+
+Expressions utilizing a single relational operator will return a 0 for false or a 1 for true
+  logical operators treat any nonzero operand as true, and zero as false
+  expr1 && expr2 will have the value of 1 if both expr1 and expr2 are both nonzero
+
+&& and || perform "short-circuit" evaluation of their operands
+  they evaluate left, and then right and will skip right if expression can be deduced from left alone
+
+Conditional Expressions 
+  expr1 ? expr2 : expr3 == if (expr1) expr2 
+                           else expr3
+  These are more difficult to read so are often ignored
+    one exception can be in return statements (return i > j ? i : j;)
+    another can be in macros in which the code is often reused for a quick comparison
+
+Boolean Values
+  There is no official boolean value in the c programming language
+  As such, macros can be used to provide clarity
+    #define TRUE 1
+    #define FALSE 0
+  Also, a fake "BOOL" type can be used
+    #define BOOL int
+    BOOL flag = FALSE;
+  in C99, there is a _Bool type that can be used
+    _Bool always evaluates to 0 or 1.
+    _Bool flag;
+    flag == 5 evaluates to 1
+    if <stdbool.h> is included, 'bool' can be used instead of _Bool. Also has true and false
+    bool flag == _Bool flag
+    flag = true is valid
+
+
+
+
+
