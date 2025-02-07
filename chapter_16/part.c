@@ -22,6 +22,8 @@ void add_part(part *parts, int n)
       read_line(part.part_name, NAME_LENGTH);
       printf("Enter Part Quantity: ");
       scanf("%d", &part.on_hand);
+      printf("Enter Part Price: ");
+      scanf("%lf", &part.price);
       insert_part(parts, part);
       printf("\n");
     }
@@ -86,11 +88,28 @@ void update_part_quantity(part *parts)
   printf("\n");
 }
 
+void update_part_price(part *parts) 
+{
+  int part_num, i;
+  double price;
+  printf("Enter Part Number: ");
+  scanf("%d", &part_num);
+  i = find_part(parts, part_num);
+  if (i >= 0) {
+    printf("Enter New Part Price: ");
+    scanf("%lf", &price);
+    parts[i].price += price;
+  } else {
+    printf("Part number not found.\n");
+  }
+  printf("\n");
+}
+
 void display_all_parts(part *parts) 
 {
-  printf("Part Number  |  Part Name                    |  Part Qty\n");
+  printf("Part Number  |  Part Name                    |  Part Qty  |  Part Price\n");
   for (int i = 0; i < num_parts; i++){
-    printf("%-16d%-32s%d\n", parts[i].part_number, parts[i].part_name, parts[i].on_hand);
+    printf("%-16d%-32s%d%16.2lf\n", parts[i].part_number, parts[i].part_name, parts[i].on_hand, parts[i].price);
   }
   printf("\n");
 }

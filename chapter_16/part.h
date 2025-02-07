@@ -7,6 +7,7 @@ typedef struct {
   int part_number;
   char part_name[NAME_LENGTH+1];
   int on_hand;
+  double price;
 } part;
 
 /******************************************************************
@@ -40,6 +41,12 @@ void search_part(part *parts);
  *                  negative values to increment or decrement     *
  ******************************************************************/
 void update_part_quantity(part *parts);
+
+/******************************************************************
+ * update_price:    When given a part and a price, this will      *
+ *                  update the price of the part pointed to.      *
+ ******************************************************************/
+void update_part_price(part *parts);
 
 /******************************************************************
  * display_all: Takes a parts array and prints the item name, the *

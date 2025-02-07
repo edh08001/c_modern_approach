@@ -14,7 +14,7 @@ int main(void)
 
 
   for (;;){
-    printf("Enter Menu Option (i,s,u,p,q): ");
+    printf("Enter Menu Option (i,s,u,c,p,q): ");
     read_line(ch, 1);
     switch(ch[0]){
       case 'i': add_part(parts, MAX_PARTS); 
@@ -22,6 +22,8 @@ int main(void)
       case 's': search_part(parts);
       break;
       case 'u': update_part_quantity(parts);
+      break;
+      case 'c': update_part_price(parts);
       break;
       case 'p': display_all_parts(parts);
       break;
