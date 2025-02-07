@@ -1,9 +1,19 @@
 #include <stdio.h>
 
+#define MTM_TO_HOUR(x) ((x) / 60) 
+#define MTM_TO_MIN(x) ((x) % 60)
+
 struct flight_time{
   int departure;
   int arrival;
 };
+
+void print_time(struct flight_time ft)
+{
+  printf("Departure: %2.2d:%2.2d | Arrival: %2.2d:%2.2d\n", 
+         MTM_TO_HOUR(ft.departure), MTM_TO_MIN(ft.departure),
+         MTM_TO_HOUR(ft.arrival), MTM_TO_MIN(ft.arrival));
+}
 
 int main(int argc, char *argv[])
 {
@@ -27,9 +37,11 @@ int main(int argc, char *argv[])
  
   for (int i = 0; i < 8; i++){
     if (table[i].departure > to_midnight){
-      
+      print_time(table[i]); 
+      break;
     }
   }
+
 
   return 0;
 }
