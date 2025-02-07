@@ -57,7 +57,5 @@ int main (void)
   r = move_rect(r, 1, 1);
   printf("New locations after moving 1, 1 are:\nTL: x = %d y = %d\nBR: x = %d y = %d\n", r.top_left.x, r.top_left.y, r.bot_right.x, r.bot_right.y);
 
-
-
   return 1;
 }
