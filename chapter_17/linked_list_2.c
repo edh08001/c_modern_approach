@@ -10,7 +10,7 @@ void add_to_list(struct node **list, int n);
 
 struct node *search_list(struct node *list, int n);
 
-struct node *delete_from_list(struct node *list, int n);
+void delete_from_list(struct node **list, int n);
 
 void delete_list(struct node *list);
 
@@ -18,20 +18,19 @@ struct node *first = NULL;
 
 int main(void)
 {
-
   add_to_list(&first, 10);
   add_to_list(&first, 20);
   add_to_list(&first, 30);
   add_to_list(&first, 40);
   add_to_list(&first, 50);
 
-  first = delete_from_list(first, 50);
+  delete_from_list(&first, 50);
   struct node *head = first;
 
-  do{
+  while (head != NULL){
     printf("%d ", head->value);
     head = head->next;
-  }while (head != NULL);
+  };
 
   printf("\n");
 }
@@ -67,24 +66,18 @@ struct node *search_list(struct node *list, int n)
   //return list;
 }
 
-struct node *delete_from_list(struct node *list, int n)
+void delete_from_list(struct node **list, int n)
 {
-  struct node *head, *del;
-
-  if (list->value == n) {
-    return list->next;
-  }
+  struct node **p, *del;
   
-  for (head = list; 
-       head->next && head->next->value != n; 
-       head = head->next)
+  for (p = list; (*p) && (*p)->value != n; p = &(*p)->next)
     ;
 
-  del = head->next;
-  head->next = del->next;
-  free(del); 
-
-  return list;
+  if (*p){
+    del = (*p);
+    *p = del->next;
+    free(del);
+  }
 }
 
 void delete_list(struct node *list)
