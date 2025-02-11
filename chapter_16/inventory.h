@@ -1,3 +1,1 @@
-#define INVENTORY_SIZE 100
-
-int num_parts;
+int num_parts, inventory_size;

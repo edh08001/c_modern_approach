@@ -17,7 +17,7 @@ typedef struct {
  *           store additional parts. If there is no space, this   *
  *           function will display an error message.              *
  ******************************************************************/
-void add_part(part *parts, int n);
+void add_part(part **parts, int n);
 
 /******************************************************************
  * insert_part: Takes a part array and a part, and inserts the    *
@@ -62,5 +62,13 @@ void display_all_parts(part *parts);
  *            exist.                                              *
  ******************************************************************/
 int find_part(part *parts, int part_num);
+
+/******************************************************************
+ * compare_parts: Function for use in qsort. Used to compare the  *
+ *                part number of two parts. If p1 is greater than *
+ *                p2 it returns positive, negative if p1 < p2,    *
+ *                and zero if p1 == p2                            *
+ ******************************************************************/
+int compare_parts(const void *p1, const void *p2);
 
 #endif

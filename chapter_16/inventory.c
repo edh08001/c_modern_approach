@@ -1,23 +1,26 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "part.h"
 #include "inventory.h"
 #include "readline.h"
 
-#define MAX_PARTS 100
+#define ARRLEN(arr) (sizeof (arr) / sizeof (arr[0]))
+
+void * my_malloc(int n);
 
 int main(void)
 {
-  int num_parts = 0;
+  num_parts = 0;
+  inventory_size = 2;
 
   char ch[2];
-  part parts[MAX_PARTS];
-
+  part *parts = my_malloc(sizeof(part) * inventory_size);
 
   for (;;){
     printf("Enter Menu Option (i,s,u,c,p,q): ");
     read_line(ch, 1);
     switch(ch[0]){
-      case 'i': add_part(parts, MAX_PARTS); 
+      case 'i': add_part(&parts, inventory_size); 
       break;
       case 's': search_part(parts);
       break;
@@ -31,4 +34,15 @@ int main(void)
       break;
     }
   }
+}
+
+void * my_malloc(int n)
+{
+  void * p = malloc(n);
+  if (p == NULL) {
+    printf("Insufficient memory for my_malloc");
+    exit(EXIT_FAILURE);
+  }
+
+  return p;
 }
