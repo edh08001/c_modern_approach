@@ -1,13 +1,15 @@
 #ifndef READ_LINE_H
 #define READ_LINE_H
 
+#define WORD_SIZE 20
+
 /**********************************************************
  * read_line: Prompts the user to input text and stores   *
  *            the input into a variable sized array.      *
  *            Returns a pointer to the string for storage *
  *            in an array of string pointers.             *
  **********************************************************/
-char *read_line();
+int read_line(char str[], int n);
 
 /**********************************************************
  * my_malloc: Attempts to create a pointer with size n.   *
