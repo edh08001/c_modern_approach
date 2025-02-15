@@ -1,0 +1,3 @@
+STORAGE CLASSES
+  Auto - variable memory persists only within scope (usually block)
+  Static - variable memory persists until program closure
