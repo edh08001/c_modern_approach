@@ -1,3 +1,4 @@
+#include <ncurses.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -5,6 +6,9 @@
 
 int main(int argc, char *argv[])
 {
+  initscr();
+  addstr("---------------------\n | codedrome.com |\n| ncurses Demo |\n-----------------\n\n");
+  refresh();
   char in;
   Stack s = create_stack();
   bool break_while = false;

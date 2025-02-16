@@ -1,5 +1,5 @@
 main: problem_1.o stackADT.o
-	gcc -g -o main problem_1.o stackADT.o
+	gcc -g -o main problem_1.o stackADT.o -lncurses
 
 problem_1.o: problem_1.c stackADT.h 
 	gcc -g -c problem_1.c 

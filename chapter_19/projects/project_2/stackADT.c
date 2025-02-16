@@ -10,6 +10,7 @@ struct stack_int {
     int size;
 };
 
+
 void terminate(char *message)
 {
     printf("%s\n", message);
