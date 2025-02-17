@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 union _ufloat {
     float f_rep;
@@ -20,6 +21,9 @@ void print_decimal(unsigned int n)
 
 int main(void)
 {
+    div_t my_test = div(7, 3);
+
+    printf("Quotient: %d, Remainder: %d\n", my_test.quot, my_test.rem);
     union _ufloat f;
     f.s_rep.frac = 0;
     f.s_rep.exp = 128;
