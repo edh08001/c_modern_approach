@@ -1,0 +1,3 @@
+This is a text file which I would like to copy from and move
+into yet another           text file        
+                        -Eli
