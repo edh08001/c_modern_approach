@@ -1,0 +1,2 @@
+this is a lowercase text file               with spaces.... and other chars()()()
+and multiple other things. 
