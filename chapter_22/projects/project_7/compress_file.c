@@ -43,11 +43,16 @@ int compress_file(FILE *fin, char* name)
     if (ch == ch_prev) {
       count++;
     } else {
-      fprintf(fout, "%hhX%c", count, ch_prev);
+      fprintf(fout, "%c%c", (char)count, ch_prev);
       ch_prev = ch;
       count = 1;
     }
+    if (count == 128) {
+      fprintf(fout, "%c%c", (char)(count - 1), ch_prev);
+      count = 1;
+    }
   }
+  fprintf(stderr, "%c\n", ch);
 
   fclose(fout);
   free(c_name);
@@ -58,11 +63,11 @@ int compress_file(FILE *fin, char* name)
 
 FILE *open_file(char *name, char *mode)
 {
-      FILE *fp;
-      if ((fp = fopen(name, mode)) == NULL){
-            fprintf(stderr, "Error opening file %s\n", name);
-            exit(EXIT_FAILURE);
-      }          
+  FILE *fp;
+  if ((fp = fopen(name, mode)) == NULL){
+    fprintf(stderr, "Error opening file %s\n", name);
+    exit(EXIT_FAILURE);
+  }          
 
-      return fp;
+    return fp;
 }
