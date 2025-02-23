@@ -11,8 +11,6 @@ void remove_ext(char **name);
 
 int main(int argc, char *argv[])
 {
-  
-  
   if (argc != 2){
     fprintf(stderr, "Error: improper program entry. Use format: ./main <file_to_compress>\n");
     exit(EXIT_FAILURE);
@@ -45,7 +43,11 @@ void remove_ext(char **name){
   c_name = *name;
 
   while (strcmp(c_name++, c_ext) != 0){
-      i++;
+    if (*c_name == '\0') {
+      fprintf(stderr, "Error: file not of the correct type, only .rle supported\n");
+      exit(EXIT_FAILURE);
+    }
+    i++;
   }
 
   (*name)[i] = '\0';
@@ -58,7 +60,6 @@ int uncompress_file(FILE *fin, char* name)
   char ch;
 
   fout = open_file(name, WRITE_BINARY);
-  
   
   while ((ch = fgetc(fin)) != EOF){
     if (count == 0){

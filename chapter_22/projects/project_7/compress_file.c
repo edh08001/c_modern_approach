@@ -52,7 +52,6 @@ int compress_file(FILE *fin, char* name)
       count = 1;
     }
   }
-  fprintf(stderr, "%c\n", ch);
 
   fclose(fout);
   free(c_name);
