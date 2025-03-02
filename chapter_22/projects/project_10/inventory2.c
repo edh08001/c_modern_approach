@@ -14,7 +14,7 @@ struct part {
 struct part *inventory = NULL;
 
 struct part *find_part(int number);
-void insert(void);
+void insert(struct part *part);
 void search(void);
 void update(void);
 void print(void);
@@ -31,7 +31,7 @@ int main(void)
         while (getchar() != '\n')
             ;
         switch (code) {
-            case 'i': insert();
+            case 'i': insert(NULL);
                       break;
             case 's': search();
                       break;
@@ -84,18 +84,20 @@ void restore(void)
     fp = fopen(file_name, "rb");
 
     for (int j = 0; j < 2; j++) {
+        struct part *new_node;
         i = 0;
-        fscanf(fp, "%d", &item_number);
+        new_node = malloc(sizeof(struct part));
+        fscanf(fp, "%d", &new_node->number);
         do {
             ch = fgetc(fp);
-            item_name[i++] = ch;
+            new_node->name[i++] = ch;
         } while (ch != '\0');
-        fscanf(fp, "%d", &on_hand);
+        fscanf(fp, "%d", &new_node->on_hand);
         fgetc(fp); //remove new line
+        
+        insert(new_node);
     }
-
 }
-
 
 struct part *find_part(int number)
 {
@@ -111,18 +113,21 @@ struct part *find_part(int number)
     return NULL;
 }
 
-void insert(void)
+void insert(struct part *part)
 {
     struct part *cur, *prev, *new_node;
+    if (part == NULL) {
+        new_node = malloc(sizeof(struct part));
+        if (new_node == NULL) {
+            printf("Database is full; can't add more parts.\n");
+            return;
+        }
 
-    new_node = malloc(sizeof(struct part));
-    if (new_node == NULL) {
-        printf("Database is full; can't add more parts.\n");
-        return;
+        printf("Enter part number: ");
+        scanf("%d", &new_node->number);
+    } else {
+        new_node = part;
     }
-
-    printf("Enter part number: ");
-    scanf("%d", &new_node->number);
 
     for (cur = inventory, prev = NULL;
          cur != NULL && new_node->number > cur->number;
@@ -133,16 +138,18 @@ void insert(void)
         free(new_node);
     }
 
-    printf("Enter part name: ");
+    if (part == NULL) {
+        printf("Enter part name: ");
         read_line(new_node->name, NAME_LEN);
         printf("Enter quantity on hand: ");
         scanf("%d", &new_node->on_hand);
+    }
 
-        new_node->next = cur;
-        if (prev == NULL)
-            inventory = new_node;
-        else
-            prev->next = new_node;
+    new_node->next = cur;
+    if (prev == NULL)
+        inventory = new_node;
+    else
+        prev->next = new_node;
 }
 
 void search(void)
