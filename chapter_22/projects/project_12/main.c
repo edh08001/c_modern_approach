@@ -14,5 +14,7 @@ int main(int argc, char *argv[])
     while (fscanf(fp, "%d,%lf,%02d/%02d/%04d", &item, &price, &month, &day, &year) == 5){
         fprintf(stdout, "%-16d $%7.2lf%17.2d/%02d/%02d\n", item, price, month, day, year);
     }
+
+    fclose(fp);
     return EXIT_SUCCESS;
 }

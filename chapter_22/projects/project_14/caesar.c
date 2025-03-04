@@ -59,5 +59,8 @@ int main(int argc, char *argv[])
         fputc(in, fpw);
     }
   
+  fclose(fpr);
+  fclose(fpw);
+
   return EXIT_SUCCESS;
 }

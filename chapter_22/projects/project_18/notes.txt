@@ -1,0 +1,12 @@
+Option 1: scan each character in the document one at a time until EOF
+    Pros:   One continuous while loop.
+            No need to worry about line length.
+            Can develop specific error conditions and checks.
+    Cons:   More complex to build, as all edge cases need to be manually created.
+            Potentially less safe as edge cases may be missed.
+
+Option 2: use Fgets one line at a time, and then use a loop of sscanf for each digit until /n
+    Pros:   Pre-built function is much easier to implement.
+            Pre-built function should catch most edge cases and will be safer.
+    Cons:   Need to enforce line size restrictions
+            Nested while loops

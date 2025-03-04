@@ -40,5 +40,7 @@ int main(int argc, char *argv[])
             flight_prev.dep/60, flight_prev.dep%60,
             flight_prev.arr/60, flight_prev.arr%60); 
 
+    fclose(fp);
+
     return EXIT_SUCCESS;
 }
